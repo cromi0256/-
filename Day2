@@ -1,0 +1,379 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNoRxTP/Lft8CqOeGG6sV0d",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/cromi0256/Study01/blob/main/Day2\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "#2 배열"
+      ],
+      "metadata": {
+        "id": "FnHeKLjoWsY_"
+      }
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 14,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Mg-rtCFYWd7A",
+        "outputId": "353a0382-cd10-412f-a7af-e9f4ebc0b108"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[0 1 2 3 4 5]\n",
+            "[[0. 0. 0. 0.]\n",
+            " [0. 0. 0. 0.]\n",
+            " [0. 0. 0. 0.]]\n",
+            "[[10  9 17]\n",
+            " [ 5  9 11]\n",
+            " [11 16  9]]\n"
+          ]
+        }
+      ],
+      "source": [
+        "#2-1 배열 생성\n",
+        "import numpy as np\n",
+        "\n",
+        "array1=np.array([0,1,2,3,4,5])  #배열생성\n",
+        "print(array1)\n",
+        "\n",
+        "array2=np.zeros((3,4))\n",
+        "print(array2)\n",
+        "\n",
+        "np.random.seed(22)\n",
+        "array3=np.random.randint(5,20,(3,3))\n",
+        "print(array3)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#2-2\n",
+        "min,max = array3.min(),array3.max() #최대최소값 찾기\n",
+        "argmin,argmax=np.argmin(array3[0]),np.argmax(array3[1]) #>인덱스 구하기\n",
+        "\n",
+        "print(min,max)\n",
+        "print(argmin,argmax)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "QuVO37t_XxsL",
+        "outputId": "60a6abd2-bf54-4d35-fb68-0630da04749c"
+      },
+      "execution_count": 17,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "5 17\n",
+            "1 2\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#2-3 배열 추출\n",
+        "array4=np.arange(1,30,3)\n",
+        "print(array4,'\\n')\n",
+        "\n",
+        "over15=np.where(array4>15)\n",
+        "print(over15)\n",
+        "print(array4[over15])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "jXanEi4BYwEa",
+        "outputId": "3b6d69c6-f9f0-4b5f-830b-afb675095639"
+      },
+      "execution_count": 21,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[ 1  4  7 10 13 16 19 22 25 28] \n",
+            "\n",
+            "(array([5, 6, 7, 8, 9]),)\n",
+            "[16 19 22 25 28]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#2-4 배열편집\n",
+        "array5=np.append(array4,[5,6,7])  #추가\n",
+        "array6= np.delete(array5,[1,4]) #삭제\n",
+        "array7=np.sort(array6)\n",
+        "\n",
+        "print(array5)\n",
+        "print(array6)\n",
+        "print(array7)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ARjHyuYFZ-gT",
+        "outputId": "898d365f-621f-4aa8-cc9f-522b39f64253"
+      },
+      "execution_count": 27,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[ 1  4  7 10 13 16 19 22 25 28  5  6  7]\n",
+            "[ 1  7 10 16 19 22 25 28  5  6  7]\n",
+            "[ 1  5  6  7  7 10 16 19 22 25 28]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#2-5 재구조화\n",
+        "\n",
+        "array7=array4.reshape(2,5)\n",
+        "print(array7)\n",
+        "\n",
+        "array8=array4.reshape(5,-1)\n",
+        "print(array8)\n",
+        "\n",
+        "array9=array8.transpose() #전치\n",
+        "print(array9)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "8v6oxpbubRvK",
+        "outputId": "b0ca34b7-5c39-4125-f6b2-c89f07259cec"
+      },
+      "execution_count": 32,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[[ 1  4  7 10 13]\n",
+            " [16 19 22 25 28]]\n",
+            "[[ 1  4]\n",
+            " [ 7 10]\n",
+            " [13 16]\n",
+            " [19 22]\n",
+            " [25 28]]\n",
+            "[[ 1  7 13 19 25]\n",
+            " [ 4 10 16 22 28]]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#2-6 병합\n",
+        "arr1=np.array([[1,2,3]])\n",
+        "arr2=np.array([[4,5,6]])\n",
+        "arr3=np.concatenate((arr1,arr2),axis=0) #행방향\n",
+        "arr4=np.concatenate((arr1,arr2),axis=1) #열방향\n",
+        "print(arr3,'\\n')\n",
+        "print(arr4)\n",
+        "\n",
+        "print('*'*25)\n",
+        "\n",
+        "hstack=np.hstack((arr1,arr2))\n",
+        "vstack=np.vstack((arr1,arr2))\n",
+        "print(hstack,'\\n')\n",
+        "print(vstack)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "3y9M0YcFcXAn",
+        "outputId": "e0385920-081f-420c-9742-6ac0954fc07e"
+      },
+      "execution_count": 38,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[[1 2 3]\n",
+            " [4 5 6]] \n",
+            "\n",
+            "[[1 2 3 4 5 6]]\n",
+            "*************************\n",
+            "[[1 2 3 4 5 6]] \n",
+            "\n",
+            "[[1 2 3]\n",
+            " [4 5 6]]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#2-7 통계 함수\n",
+        "number=np.arange(1,10)\n",
+        "\n",
+        "print('합',number.sum())\n",
+        "print('평균',number.mean())\n",
+        "print('표준편차',number.std())\n",
+        "print('분산',number.var())"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "zLL4RzeldWZe",
+        "outputId": "45cdd4a6-9f8f-4ceb-957e-3aa7b286e1d2"
+      },
+      "execution_count": 39,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "합 45\n",
+            "평균 5.0\n",
+            "표준편차 2.581988897471611\n",
+            "분산 6.666666666666667\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "log=np.log(number)\n",
+        "print(np.round(log,4))\n",
+        "\n",
+        "log10=np.log10(number)\n",
+        "print(log10)\n",
+        "\n",
+        "exp=np.exp(log)\n",
+        "print(exp)\n",
+        "\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "NjY-IFhYeNPl",
+        "outputId": "8c443bcd-7589-4173-d8d3-e02c87e8b11e"
+      },
+      "execution_count": 44,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[0.     0.6931 1.0986 1.3863 1.6094 1.7918 1.9459 2.0794 2.1972]\n",
+            "[0.         0.30103    0.47712125 0.60205999 0.69897    0.77815125\n",
+            " 0.84509804 0.90308999 0.95424251]\n",
+            "[1. 2. 3. 4. 5. 6. 7. 8. 9.]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#+배열 계산\n",
+        "a32=np.array([[1,2],[3,4],[5,6]])\n",
+        "b23=np.array([[10,20,30],[40,50,60]])\n",
+        "print(a32,'\\n',b23,'\\n\\n')\n",
+        "\n",
+        "\n",
+        "dot_ab=np.dot(a32,b23)  #행렬곱\n",
+        "dot_ba=np.dot(b23,a32)\n",
+        "another=a32@b23\n",
+        "print(dot_ab)\n",
+        "print(dot_ba)\n",
+        "print(another)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "hrMW15cje08I",
+        "outputId": "ce5de080-de7c-4fdc-e94d-ce941c9c65e7"
+      },
+      "execution_count": 51,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[[1 2]\n",
+            " [3 4]\n",
+            " [5 6]] \n",
+            " [[10 20 30]\n",
+            " [40 50 60]] \n",
+            "\n",
+            "\n",
+            "[[ 90 120 150]\n",
+            " [190 260 330]\n",
+            " [290 400 510]]\n",
+            "[[220 280]\n",
+            " [490 640]]\n",
+            "[[ 90 120 150]\n",
+            " [190 260 330]\n",
+            " [290 400 510]]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "FC0ORKmQf18y"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
